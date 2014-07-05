@@ -1,12 +1,11 @@
 // web.js
 var express = require("express");
-var logfmt = require("logfmt");
 var app = express();
 
-app.use(logfmt.requestLogger());
+app.use(express.static(__dirname + '/public'));
 
-app.get('/', function(req, res) {
-  res.send('<h1>Hello World!');
+app.use(function(req,res){
+    res.sendfile(__dirname + '/public/error404.html');
 });
 
 var port = Number(process.env.PORT || 5000);
